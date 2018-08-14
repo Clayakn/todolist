@@ -30,7 +30,7 @@ class Home extends Component {
           this.setState({
               title: '',
           })
-          this.props.getTask()
+      
         }
       
         deleteTask(id){

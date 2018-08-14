@@ -9,7 +9,7 @@ const initialState = {
 }
 
 
-const POST_TASK = 'POSt_TASK';
+const POST_TASK = 'POST_TASK';
 const POST_TASK_PENDING = 'POST_TASK_PENDING';
 const POST_TASK_FULFILLED = 'POST_TASK_FULFILLED';
 const POST_TASK_REJECTED = 'POST_TASK_REJECTED';
@@ -98,6 +98,7 @@ export default function reducer(state = initialState, action) {
 export function getTask() {
     const fetchTask = function() {
         return axios.get('https://practiceapi.devmountain.com/api/tasks').then(response => response.data)}
+    
     return {
     type: GET_TASK, 
     payload: fetchTask()
@@ -136,12 +137,11 @@ export function deleteTask(id) {
 
 
 export function postTask(title) {
-    const postTask = function() {
-        return axios.post('https://practiceapi.devmountain.com/api/tasks', {title}).then(response => response.data)
-    }
+    const postTask = axios.post('https://practiceapi.devmountain.com/api/tasks', {title}).then(response => response.data)
+    
     return {
         type: POST_TASK, 
-        payload: postTask()
+        payload: postTask
     }
 }
 
