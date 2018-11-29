@@ -15,15 +15,15 @@ import { patchTask, putTask, deleteTask } from '../redux/reducer';
         }
     }
     componentDidMount() {
-        const index = this.props.list.findIndex(e => e.id === +this.props.match.params.id)
-        console.log('index', index)
-        const task = this.props.list.splice(index,1)
+        const task = this.props.list.find(e => e.id == this.props.match.params.id) || JSON.parse(localStorage.getItem("list-item"));
+        localStorage.setItem("list-item", JSON.stringify(task))
         console.log('task', task)
+
         this.setState({
             task,
-            title: task[0].title,
-            description: task[0].description,
-            completed: task[0].completed
+            title: task.title,
+            description: task.description,
+            completed: task.completed
         })
     }
 
